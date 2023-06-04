@@ -2,12 +2,19 @@ package com.example.taskhuman
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Rect
 import android.os.Bundle
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
+import android.text.style.UnderlineSpan
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.text.bold
+import androidx.core.text.color
+import androidx.core.text.underline
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -65,9 +72,28 @@ class DiscoverFragment : Fragment(), Adapter.FavouriteListener {
     }
 
     private fun setData(data: DataModel?) {
+        binding.rvHeading.text = data?.topicHeader?.tileName
+        binding.topHeading.text = applyColorAndUnderlineToText("1:1 guidance from live specialists")
         binding.exploreLayout.visibility = View.VISIBLE
         binding.topHeading.visibility = View.VISIBLE
-        binding.rvHeading.text = data?.topicHeader?.tileName
+    }
+
+    private fun applyColorAndUnderlineToText(text: String): CharSequence {
+        val spannableStringBuilder = SpannableStringBuilder(text)
+
+        // Find the index of the word "live"
+        val startIndex = text.indexOf("live")
+        val endIndex = startIndex + "live".length
+
+        // Apply color to "live"
+        val colorSpan = ForegroundColorSpan(requireActivity().getColor(R.color.green))
+        spannableStringBuilder.setSpan(colorSpan, startIndex, endIndex, SpannableStringBuilder.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        // Apply underline to "live"
+        val underlineSpan = UnderlineSpan()
+        spannableStringBuilder.setSpan(underlineSpan, startIndex, endIndex, SpannableStringBuilder.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        return spannableStringBuilder
     }
 
     private fun initialize() {
