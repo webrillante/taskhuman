@@ -34,20 +34,30 @@ class DiscoverFragment : Fragment(), Adapter.FavouriteListener {
         _binding = FragmentDiscoverBinding.inflate(inflater, container, false)
         initialize()
         setObservers()
+        clickHandler()
         return binding.root
     }
 
+    private fun clickHandler() {
+        binding.back.setOnClickListener {
+            requireActivity().finish()
+        }
+    }
+
     private fun setObservers() {
-        viewModel.getPhysicalFitnessData().observe(requireActivity(), Observer {
+        viewModel.getDiscoverData().observe(requireActivity(), Observer {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
+                        binding.loader.loaderParent.visibility = View.GONE
                         setData(it.data)
                         it.data?.skills?.let { it1 -> adapter.reload(it1) }
                     }
                     Status.ERROR -> {
+                        binding.loader.loaderParent.visibility = View.GONE
                     }
                     Status.LOADING -> {
+                        binding.loader.loaderParent.visibility = View.VISIBLE
                     }
                 }
             }
@@ -55,6 +65,8 @@ class DiscoverFragment : Fragment(), Adapter.FavouriteListener {
     }
 
     private fun setData(data: DataModel?) {
+        binding.exploreLayout.visibility = View.VISIBLE
+        binding.topHeading.visibility = View.VISIBLE
         binding.rvHeading.text = data?.topicHeader?.tileName
     }
 
@@ -191,11 +203,14 @@ class DiscoverFragment : Fragment(), Adapter.FavouriteListener {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
-                        adapter.setAddedFavourite(resource.data, position)
+                        binding.loader.loaderParent.visibility = View.GONE
+                        adapter.setAddedFavourite(position)
                     }
                     Status.ERROR -> {
+                        binding.loader.loaderParent.visibility = View.GONE
                     }
                     Status.LOADING -> {
+                        binding.loader.loaderParent.visibility = View.VISIBLE
                     }
                 }
             }
@@ -207,11 +222,14 @@ class DiscoverFragment : Fragment(), Adapter.FavouriteListener {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
-                        adapter.setRemoveFavourite(resource.data, position)
+                        binding.loader.loaderParent.visibility = View.GONE
+                        adapter.setRemoveFavourite(position)
                     }
                     Status.ERROR -> {
+                        binding.loader.loaderParent.visibility = View.GONE
                     }
                     Status.LOADING -> {
+                        binding.loader.loaderParent.visibility = View.VISIBLE
                     }
                 }
             }

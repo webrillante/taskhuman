@@ -11,10 +11,10 @@ import kotlinx.coroutines.Dispatchers
 
 class BaseActivityViewModel(private val mainRepository: MainRepository) : ViewModel() {
 
-    fun getPhysicalFitnessData() = liveData(Dispatchers.IO) {
+    fun getDiscoverData() = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
         try {
-            emit(Resource.success(data = mainRepository.getPhysicalFitnessData()))
+            emit(Resource.success(data = mainRepository.getDiscoverData("physical fitness")))
         } catch (exception: Exception) {
             emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
         }

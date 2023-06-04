@@ -45,23 +45,23 @@ class Adapter(): RecyclerView.Adapter<ItemViewHolder>() {
         this.listener = listener
     }
 
-    fun setAddedFavourite(data: FavouriteResponse?, position: Int) {
+    fun setAddedFavourite(position: Int) {
         list[position].isFavorite = true
         CoroutineScope(Dispatchers.IO).launch {
-            delay(3000)
+            delay(2000)
             withContext(Dispatchers.Main) {
-                notifyDataSetChanged()
+                notifyItemChanged(position)
             }
         }
 
     }
 
-    fun setRemoveFavourite(data: FavouriteResponse?, position: Int) {
+    fun setRemoveFavourite(position: Int) {
         list[position].isFavorite = false
         CoroutineScope(Dispatchers.IO).launch {
-            delay(3000)
+            delay(2000)
             withContext(Dispatchers.Main) {
-                notifyDataSetChanged()
+                notifyItemChanged(position)
             }
         }
 

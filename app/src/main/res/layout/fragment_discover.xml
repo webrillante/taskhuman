@@ -71,6 +71,8 @@
             android:layout_height="wrap_content"
             android:text="1:1 guidance from live specialists"
             android:textSize="12dp"
+            android:visibility="gone"
+            tools:visibility="visible"
             android:textColor="#6A6A6A"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -78,7 +80,7 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout2"
+            android:id="@+id/exploreLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -86,6 +88,8 @@
             android:background="@drawable/rounded_corner_fill_green_16"
             android:paddingStart="12dp"
             android:paddingEnd="32dp"
+            android:visibility="gone"
+            tools:visibility="visible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/top_heading">
 
@@ -123,7 +127,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginStart="12dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+            app:layout_constraintTop_toBottomOf="@+id/exploreLayout" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -141,6 +145,9 @@
             tools:itemCount="5"
             tools:listitem="@layout/view_holder_item" />
 
+        <include
+            android:id="@+id/loader"
+            layout="@layout/common_loader" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

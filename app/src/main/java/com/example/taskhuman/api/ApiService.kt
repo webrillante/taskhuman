@@ -6,11 +6,12 @@ import com.example.taskhuman.data.FavouriteResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface ApiService {
 
-    @GET("discover/topicDetails/physical%20fitness")
-    suspend fun getPhysicalFitnessData(): DataModel
+    @GET("discover/topicDetails/{paramValue}")
+    suspend fun getDiscoverData(@Path("paramValue") paramValue: String): DataModel
 
     @POST("favorite/add")
     suspend fun addFavourite(@Body data: FavouriteInput): FavouriteResponse
