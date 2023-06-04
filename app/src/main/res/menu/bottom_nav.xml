@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Discover"
+        android:id="@+id/discover"
+        android:icon="@drawable/home"/>
+    <item android:title="Reconnect"
+        android:id="@+id/reconnect"
+        android:icon="@drawable/reconnect"/>
+    <item android:title="Bookings"
+        android:id="@+id/bookings"
+        android:icon="@drawable/bookings"/>
+    <item android:title="Messages"
+        android:id="@+id/messages"
+        android:icon="@drawable/messages"/>
+    <item android:title="Blogs"
+        android:id="@+id/blogs"
+        android:icon="@drawable/blogs"/>
+</menu>
