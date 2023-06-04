@@ -2,4 +2,9 @@
     <string name="app_name">TaskHuman</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="live_specialists">1:1 guidance from live specialists</string>
+    <string name="please_retry">Please retry: Error Occurred</string>
+    <string name="add_to_favourite">Add to Favourite</string>
+    <string name="added">Added</string>
+    <string name="remove_favourite">Remove Favourite</string>
 </resources>

@@ -26,7 +26,7 @@ class Adapter(): RecyclerView.Adapter<ItemViewHolder>() {
         holder.itemData = list[position]
         holder.onFavouriteClick = {
             holder.updateFavourite(list[position].isFavorite)
-            if(list[position].isFavorite == false) {
+            if(!list[position].isFavorite) {
                 listener?.addFavourite(list[position].tileName, list[position].dictionaryName, position)
             } else {
                 listener?.removeFavourite(list[position].tileName, position)

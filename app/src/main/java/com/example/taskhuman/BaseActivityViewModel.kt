@@ -6,6 +6,7 @@ import androidx.lifecycle.liveData
 import com.example.taskhuman.api.ApiHelper
 import com.example.taskhuman.data.FavouriteInput
 import com.example.taskhuman.repository.MainRepository
+import com.example.taskhuman.utils.PHYSICAL_FITNESS
 import com.example.taskhuman.utils.Resource
 import kotlinx.coroutines.Dispatchers
 
@@ -14,7 +15,7 @@ class BaseActivityViewModel(private val mainRepository: MainRepository) : ViewMo
     fun getDiscoverData() = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
         try {
-            emit(Resource.success(data = mainRepository.getDiscoverData("physical fitness")))
+            emit(Resource.success(data = mainRepository.getDiscoverData(PHYSICAL_FITNESS)))
         } catch (exception: Exception) {
             emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
         }

@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.text.bold
 import androidx.core.text.color
 import androidx.core.text.underline
@@ -61,6 +62,7 @@ class DiscoverFragment : Fragment(), Adapter.FavouriteListener {
                         it.data?.skills?.let { it1 -> adapter.reload(it1) }
                     }
                     Status.ERROR -> {
+                        Toast.makeText(requireContext(), requireActivity().getString(R.string.please_retry), Toast.LENGTH_SHORT).show()
                         binding.loader.loaderParent.visibility = View.GONE
                     }
                     Status.LOADING -> {
@@ -73,7 +75,7 @@ class DiscoverFragment : Fragment(), Adapter.FavouriteListener {
 
     private fun setData(data: DataModel?) {
         binding.rvHeading.text = data?.topicHeader?.tileName
-        binding.topHeading.text = applyColorAndUnderlineToText("1:1 guidance from live specialists")
+        binding.topHeading.text = applyColorAndUnderlineToText(requireActivity().getString(R.string.live_specialists))
         binding.exploreLayout.visibility = View.VISIBLE
         binding.topHeading.visibility = View.VISIBLE
     }
@@ -104,8 +106,7 @@ class DiscoverFragment : Fragment(), Adapter.FavouriteListener {
         binding.recyclerView.layoutManager = layoutManager
         adapter.setListener(this)
         binding.recyclerView.adapter = adapter
-
-
+        
         setItemTouchHelper()
     }
 
@@ -233,6 +234,7 @@ class DiscoverFragment : Fragment(), Adapter.FavouriteListener {
                         adapter.setAddedFavourite(position)
                     }
                     Status.ERROR -> {
+                        Toast.makeText(requireContext(), requireActivity().getString(R.string.please_retry), Toast.LENGTH_SHORT).show()
                         binding.loader.loaderParent.visibility = View.GONE
                     }
                     Status.LOADING -> {
@@ -252,6 +254,7 @@ class DiscoverFragment : Fragment(), Adapter.FavouriteListener {
                         adapter.setRemoveFavourite(position)
                     }
                     Status.ERROR -> {
+                        Toast.makeText(requireContext(), requireActivity().getString(R.string.please_retry), Toast.LENGTH_SHORT).show()
                         binding.loader.loaderParent.visibility = View.GONE
                     }
                     Status.LOADING -> {

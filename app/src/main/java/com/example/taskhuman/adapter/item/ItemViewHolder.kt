@@ -60,9 +60,9 @@ class ItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
             heart.setImageDrawable(heart.context.getDrawable(R.drawable.heart))
             heartTick.setImageDrawable(heartTick.context.getDrawable(R.drawable.tick))
             heartTick.visibility = View.VISIBLE
-            favouriteText.text = "Added"
+            favouriteText.text = favouriteText.context.getString(R.string.added)
         } else {
-            favouriteText.text = "Add to Favourite"
+            favouriteText.text = favouriteText.context.getString(R.string.add_to_favourite)
             heartTick.visibility = View.GONE
             heart.setImageDrawable(heart.context.getDrawable(R.drawable.heart))
         }
@@ -75,42 +75,28 @@ class ItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
             if(!providerInfo.isNullOrEmpty()) {
                 if (providerInfo.size > 0) {
                     provider1.visibility = View.VISIBLE
-                    ImageLoader.loadImage(provider1, providerInfo.get(0).profileImage)
+                    ImageLoader.loadImage(provider1, providerInfo[0].profileImage)
                 }
                 if (providerInfo.size > 1) {
                     provider2.visibility = View.VISIBLE
-                    ImageLoader.loadImage(provider2, providerInfo.get(1).profileImage)
+                    ImageLoader.loadImage(provider2, providerInfo[1].profileImage)
                 }
                 if (providerInfo.size > 2) {
                     provider3.visibility = View.VISIBLE
-                    ImageLoader.loadImage(provider3, providerInfo.get(2).profileImage)
+                    ImageLoader.loadImage(provider3, providerInfo[2].profileImage)
                 }
                 if (providerInfo.size > 3) {
                     provider4.visibility = View.VISIBLE
-                    ImageLoader.loadImage(provider4, providerInfo.get(3)?.profileImage!!)
+                    ImageLoader.loadImage(provider4, providerInfo[3].profileImage)
                 }
             }
 
             if(isFavorite) {
                 heart.setImageDrawable(heart.context.getDrawable(R.drawable.heart_cross))
                 heartTick.visibility = View.GONE
-                favouriteText.text = "Remove Favourite"
-//                if(added == null) {
-//                    favouriteText.text = "Add to Favourite"
-//                    heart.setImageDrawable(heart.context.getDrawable(R.drawable.heart))
-//                }
-//                else if(added == true) {
-//                    heart.setImageDrawable(heart.context.getDrawable(R.drawable.heart))
-//                    heartTick.setImageDrawable(heartTick.context.getDrawable(R.drawable.tick))
-//                    heartTick.visibility = View.VISIBLE
-//                    favouriteText.text = "Added"
-//                } else {
-//                    heart.setImageDrawable(heart.context.getDrawable(R.drawable.heart_cross))
-//                    heartTick.visibility = View.GONE
-//                    favouriteText.text = "Remove Favourite"
-//                }
+                favouriteText.text = favouriteText.context.getString(R.string.remove_favourite)
             } else {
-                favouriteText.text = "Add to Favourite"
+                favouriteText.text = favouriteText.context.getString(R.string.add_to_favourite)
                 heart.setImageDrawable(heart.context.getDrawable(R.drawable.heart))
             }
 
