@@ -74,20 +74,16 @@ class ItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
             itemHeading.text = tileName
             if(!providerInfo.isNullOrEmpty()) {
                 if (providerInfo.size > 0) {
-                    provider1.visibility = View.VISIBLE
-                    ImageLoader.loadImage(provider1, providerInfo[0].profileImage)
+                    showProviderImage(provider1, providerInfo[0].profileImage)
                 }
                 if (providerInfo.size > 1) {
-                    provider2.visibility = View.VISIBLE
-                    ImageLoader.loadImage(provider2, providerInfo[1].profileImage)
+                    showProviderImage(provider2, providerInfo[1].profileImage)
                 }
                 if (providerInfo.size > 2) {
-                    provider3.visibility = View.VISIBLE
-                    ImageLoader.loadImage(provider3, providerInfo[2].profileImage)
+                    showProviderImage(provider3, providerInfo[2].profileImage)
                 }
                 if (providerInfo.size > 3) {
-                    provider4.visibility = View.VISIBLE
-                    ImageLoader.loadImage(provider4, providerInfo[3].profileImage)
+                    showProviderImage(provider4, providerInfo[3].profileImage)
                 }
             }
 
@@ -102,19 +98,27 @@ class ItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
             when(availability?.status) {
                 1 -> {
-                    dot.visibility = View.VISIBLE
-                    dot.setImageDrawable(dot.context.getDrawable(R.drawable.green_dot))
+                    showDot(dot, R.drawable.green_dot)
                 }
                 2 -> {
-                    dot.visibility = View.VISIBLE
-                    dot.setImageDrawable(dot.context.getDrawable(R.drawable.grey_dot))
+                    showDot(dot, R.drawable.grey_dot)
                 }
                 3 -> {
-                    dot.visibility = View.VISIBLE
-                    dot.setImageDrawable(dot.context.getDrawable(R.drawable.yellow_dot))
+                    showDot(dot, R.drawable.yellow_dot)
                 }
             }
         }
 
     }
+
+    private fun showDot(dot: ImageView, color: Int) {
+        dot.visibility = View.VISIBLE
+        dot.setImageDrawable(dot.context.getDrawable(color))
+    }
+
+    private fun showProviderImage(provider: ShapeableImageView, profileImage: String) {
+        provider.visibility = View.VISIBLE
+        ImageLoader.loadImage(provider, profileImage)
+    }
+
 }
