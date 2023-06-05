@@ -12,6 +12,4 @@ data class Skill(
     val providerInfo: List<ProviderInfo>,
     var isFavorite: Boolean,
     val columns: Int
-) {
-    var added: Boolean? = null
-}
+)

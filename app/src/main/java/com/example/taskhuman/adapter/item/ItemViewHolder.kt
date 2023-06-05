@@ -1,11 +1,13 @@
 package com.example.taskhuman.adapter.item
 
+import android.graphics.Color
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskhuman.R
+import com.example.taskhuman.data.Availability
 import com.example.taskhuman.data.Skill
 import com.example.taskhuman.utils.ImageLoader
 import com.google.android.material.imageview.ShapeableImageView
@@ -96,24 +98,16 @@ class ItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
                 heart.setImageDrawable(heart.context.getDrawable(R.drawable.heart))
             }
 
-            when(availability?.status) {
-                1 -> {
-                    showDot(dot, R.drawable.green_dot)
-                }
-                2 -> {
-                    showDot(dot, R.drawable.grey_dot)
-                }
-                3 -> {
-                    showDot(dot, R.drawable.yellow_dot)
-                }
-            }
+            showDot(dot, availability)
         }
 
     }
 
-    private fun showDot(dot: ImageView, color: Int) {
-        dot.visibility = View.VISIBLE
-        dot.setImageDrawable(dot.context.getDrawable(color))
+    private fun showDot(dot: ImageView, availability: Availability?) {
+        if(availability != null && !availability.color.isNullOrEmpty()) {
+            dot.visibility = View.VISIBLE
+            dot.setBackgroundColor(Color.parseColor(availability.color))
+        }
     }
 
     private fun showProviderImage(provider: ShapeableImageView, profileImage: String) {
